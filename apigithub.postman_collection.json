@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "d184a569-16fd-4f8a-bea4-60f2bebe463c",
+		"name": "apigithub",
+		"description": "api测试与github集成",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "查询tpshop商城小米手机",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost/Home/Goods/search.html?q=%E5%B0%8F%E7%B1%B3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"Home",
+						"Goods",
+						"search.html"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "%E5%B0%8F%E7%B1%B3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "查询tpshop商城华为手机",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost/Home/Goods/search.html?q=华为",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"Home",
+						"Goods",
+						"search.html"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "华为"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "5491d1d1-aa13-4108-a441-c6dd62150230",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "35dccd2a-15b4-4e9d-8427-3c9457f88b3f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
