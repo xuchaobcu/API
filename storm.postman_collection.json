@@ -1,0 +1,1954 @@
+{
+	"info": {
+		"_postman_id": "8e239c6e-fb28-4ea3-a3c0-eba44c288c34",
+		"name": "storm",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "storm-001",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应等于预期值",
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body('{\"name\": \"\\\\u5c0f\\\\u660e\", \"code\": 200, \"id\": \"1\", \"age\": 18}');",
+							"});",
+							"",
+							"",
+							"//判断响应体code=200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}/getuser?userid=1",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "1"
+						}
+					]
+				},
+				"description": "查询userid=1的用户信息"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-002",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}/getuser?userid=2",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "2"
+						}
+					]
+				},
+				"description": "测试用户不存在场景，提示“没有这个用户”"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-003",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}/getuser",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser"
+					]
+				},
+				"description": "测试【不传递参数】场景，提示“没有这个用户”"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-004",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}/getuser?userid=-1",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "-1"
+						}
+					]
+				},
+				"description": "测试【userid=-1,输入负数】场景，提示“没有这个用户”"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-005",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{domain}}/getuser?userid=admin",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "admin"
+						}
+					]
+				},
+				"description": "测试【userid=admin,输入非法用户】场景，提示“没有这个用户”"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-006",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应等于预期值",
+							"pm.test(\"Body is correct\", function () {",
+							"    pm.response.to.have.body('{\"name\": \"\\\\u5c0f\\\\u660e\", \"code\": 200, \"id\": \"1\", \"age\": 18}');",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/getuser",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser"
+					]
+				},
+				"description": "查询userid=1的用户信息，post方式提交"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-007",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/getuser",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser"
+					]
+				},
+				"description": "测试用户不存在场景，提示“没有这个用户”"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-008",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/getuser",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser"
+					]
+				},
+				"description": "测试【不传递参数】场景，提示“没有这个用户”"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-009",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "-1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/getuser",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser"
+					]
+				},
+				"description": "测试【userid=-1,输入负数】场景，提示“没有这个用户”"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-010",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "admin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/getuser",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser"
+					]
+				},
+				"description": "测试【userid=admin,输入非法用户】场景，提示“没有这个用户”"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-011",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "10000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/getuser",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser"
+					]
+				},
+				"description": "测试【userid=10000,输入数字比较大】场景，提示“没有这个用户”"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-012",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://{{domain}}/getuser2?userid=1",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser2"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "1"
+						}
+					]
+				},
+				"description": "获取用户请求接口2\n\n请求方式：get\n前置条件：Header【Content-Type=application/JSON】\n用户ID：存在\n预期结果：成功获取用户信息"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-013",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"请设置Content-Type为application/json\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://{{domain}}/getuser2?userid=1",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser2"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "1"
+						}
+					]
+				},
+				"description": "获取用户请求接口2\n\n请求方式：get\n前置条件：不设置Header\n用户ID：存在\n预期结果：提示【请设置Content-Type为application/json】"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-014",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"请设置Content-Type为application/json\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json123"
+					},
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://{{domain}}/getuser2?userid=1",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser2"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "1"
+						}
+					]
+				},
+				"description": "获取用户请求接口2\n\n请求方式：get\n前置条件：设置Header错误\n用户ID：存在\n预期结果：提示【请设置Content-Type为application/json】"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-015",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://{{domain}}/getuser2",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser2"
+					]
+				},
+				"description": "获取用户请求接口2\n\n请求方式：get\n前置条件：设置正确的Header\n用户ID：不传递\n预期结果：提示【没有这个用户】"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-016",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://{{domain}}/getuser2?userid=2",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getuser2"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "2"
+						}
+					]
+				},
+				"description": "获取用户请求接口2\n\n请求方式：get\n前置条件：设置正确的Header\n用户ID：不存在\n预期结果：提示【没有这个用户】"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-017",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userid\" : 1\n}"
+				},
+				"url": {
+					"raw": "http://{{domain}}/getmoney",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getmoney"
+					]
+				},
+				"description": "获取用户余额接口测试\n\n请求方式：post\n前置条件：参数必须为json格式传递\n用户ID：1\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-018",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"参数错误\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/getmoney",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getmoney"
+					]
+				},
+				"description": "获取用户余额接口测试\n\n请求方式：post\n前置条件：参数不为json格式传递\n用户ID：1\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-019",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userid\" : 2\n}"
+				},
+				"url": {
+					"raw": "http://{{domain}}/getmoney",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getmoney"
+					]
+				},
+				"description": "获取用户余额接口测试\n\n请求方式：post\n前置条件：参数必须为json格式传递\n用户ID：2\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-020",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"参数错误\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{domain}}/getmoney",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getmoney"
+					]
+				},
+				"description": "获取用户余额接口测试\n\n请求方式：post\n前置条件：无入参\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-021",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userid\" : \"admin\"\n}"
+				},
+				"url": {
+					"raw": "http://{{domain}}/getmoney",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getmoney"
+					]
+				},
+				"description": "获取用户余额接口测试\n\n请求方式：post\n前置条件：入参数据类型异常（admin）\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-022",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://{{domain}}/getmoney?userid=1",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"getmoney"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "1"
+						}
+					]
+				},
+				"description": "获取用户余额接口测试\n\n请求方式：get\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-023",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "money",
+							"value": "99999",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/setmoney",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"setmoney"
+					]
+				},
+				"description": "修改用户余额接口测试\n\n请求方式：post\n前置条件：http权限验证【admin/123456】\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-024",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"需要认证\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "money",
+							"value": "88888",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/setmoney",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"setmoney"
+					]
+				},
+				"description": "修改用户余额接口测试\n\n请求方式：post\n前置条件：无http权限\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-025",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"认证失败\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1234566",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "money",
+							"value": "77777",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/setmoney",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"setmoney"
+					]
+				},
+				"description": "修改用户余额接口测试\n\n请求方式：post\n前置条件：用http权限【用户名正确/密码错误】\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-026",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "money",
+							"value": "66666",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/setmoney",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"setmoney"
+					]
+				},
+				"description": "修改用户余额接口测试\n\n请求方式：post\n前置条件：http权限【admin/123456】\n传递参数：用户名不存在userid=2\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-027",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200",
+							"pm.test(\"Status code\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.code).to.eql(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "money",
+							"value": "555.55",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/setmoney",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"setmoney"
+					]
+				},
+				"description": "修改用户余额接口测试\n\n请求方式：post\n前置条件：http权限【admin/123456】\n传递参数：用户名正确【userid=1】但是金额不正确【money=555.55】\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-028",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://{{domain}}/setmoney?userid=1&money=444",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"setmoney"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "1"
+						},
+						{
+							"key": "money",
+							"value": "444"
+						}
+					]
+				},
+				"description": "修改用户余额接口测试\n\n请求方式：get\n前置条件：http权限【admin/123456】\n传递参数：用户名正确【userid=1】但是金额不正确【money=444】\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-029",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200\r",
+							"pm.test(\"Status code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "cookie",
+						"value": "token=token12345",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "money",
+							"value": "900",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/setmoney2",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"setmoney2"
+					]
+				},
+				"description": "修改用户余额接口2测试\n\n请求方式：post\n前置条件：需要cookie参数信息\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-030",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200\r",
+							"pm.test(\"Status code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.msg).to.eql(\"cookie认证失败\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "money",
+							"value": "800",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/setmoney2",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"setmoney2"
+					]
+				},
+				"description": "修改用户余额接口2测试\n\n请求方式：post\n前置条件：不输入cookie参数\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-031",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200\r",
+							"pm.test(\"Status code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.msg).to.eql(\"cookie非法\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "cookie",
+						"type": "text",
+						"value": "token=token11111"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "money",
+							"value": "700",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/setmoney2",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"setmoney2"
+					]
+				},
+				"description": "修改用户余额接口2测试\n\n请求方式：post\n前置条件：传递cookie错误\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-032",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200\r",
+							"pm.test(\"Status code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "cookie",
+						"type": "text",
+						"value": "token=token12345"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "money",
+							"value": "900",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/setmoney2",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"setmoney2"
+					]
+				},
+				"description": "修改用户余额接口2测试\n\n请求方式：post\n前置条件：需要cookie参数信息\n\n用户名：不存在\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-033",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200\r",
+							"pm.test(\"Status code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "cookie",
+						"type": "text",
+						"value": "token=token12345"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "userid",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "money",
+							"value": "777.77",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/setmoney2",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"setmoney2"
+					]
+				},
+				"description": "修改用户余额接口2测试\n\n请求方式：post\n前置条件：需要cookie参数信息\n\n用户名：正确\nmoney：非法输入\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-034",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "cookie",
+						"type": "text",
+						"value": "token=token12345"
+					}
+				],
+				"url": {
+					"raw": "http://{{domain}}/setmoney2?userid=1&money=666",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"setmoney2"
+					],
+					"query": [
+						{
+							"key": "userid",
+							"value": "1"
+						},
+						{
+							"key": "money",
+							"value": "666"
+						}
+					]
+				},
+				"description": "修改用户余额接口2测试\n\n请求方式：get\n前置条件：需要cookie参数信息\n\n用户名：正确\nmoney：正确\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-035",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200\r",
+							"pm.test(\"Status code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/itheima/Desktop/test.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/uploadfile",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"uploadfile"
+					]
+				},
+				"description": "上传文件测试\n\n请求方式：post\n前置条件：txt文件\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-036",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200\r",
+							"pm.test(\"Status code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/itheima/Desktop/test.docx"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/uploadfile",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"uploadfile"
+					]
+				},
+				"description": "上传文件测试\n\n请求方式：post\n前置条件：doc文件\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-037",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200\r",
+							"pm.test(\"Status code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/itheima/Desktop/jack.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/uploadfile",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"uploadfile"
+					]
+				},
+				"description": "上传文件测试\n\n请求方式：post\n前置条件：jpg文件\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "storm-038",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b868f68-3bac-46b4-97dd-0b812253f6b5",
+						"exec": [
+							"//判断响应体code=200\r",
+							"pm.test(\"Status code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/itheima/Desktop/测试文件.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://{{domain}}/uploadfile",
+					"protocol": "http",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"uploadfile"
+					]
+				},
+				"description": "上传文件测试\n\n请求方式：post\n前置条件：中文txt文件\n\n"
+			},
+			"response": []
+		}
+	]
+}
